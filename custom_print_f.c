@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)         /*check if it exists*/
 		return (-1);
 	va_start(variable_args_list, format);        /*initialise list ptr argument*/
-	for (; *format && *format != '\0'; format++) /*loop through the characters*/
+	while (*format != '\0')
 	{
 		if (*format != '%') /*if there's no format specifier*/
 		{
@@ -35,6 +35,7 @@ int _printf(const char *format, ...)
 				count_char = count_char + LOW;
 			}
 		}
+		format++;
 	}
 	va_end(variable_args_list);
 	return (count_char);
