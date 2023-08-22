@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 	for (; *format; format++)             /*loop through the characters*/
 	{
 		if (*format != '%' && *format != '\0') /*if there's no format specifier*/
-		{	write(1, format, strlen(format)); /*Write to stdout*/
+		{	write(1, format, 1); /*Write to stdout*/
 			count_char++;                     /*Increment the character count*/
 		}
 		else
@@ -24,14 +24,14 @@ int _printf(const char *format, ...)
 			if (*format == '\0') /*End of sentence (NULL terminator)*/
 				break;
 			if (*format == '%') /*Solves Corner case of double %% sign*/
-			{	write(1, format, strlen(format));
+			{	write(1, format, 1);
 				count_char++;
 			}
 			else if (*format == 'c')
 			{	/*Access current variable and pint to the next one*/
 				char arg = va_arg(variable_args_list, int);
 
-				write(1, &arg, strlen(format));
+				write(1, &arg, 1);
 				count_char++;
 			}
 			else if (*format == 's')
