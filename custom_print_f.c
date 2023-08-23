@@ -9,7 +9,7 @@ int _printf(const char *format, ...)
 	int count_char = 0;         /*counts the characters printed*/
 	va_list variable_args_list; /*declare pointer to the arg list*/
 
-	if (format == NULL)         /*check if it exists*/
+	if (format == NULL) /*check if it exists*/
 		return (-1);
 	va_start(variable_args_list, format); /*initialise list ptr argument*/
 	while (*format != '\0')
@@ -66,6 +66,22 @@ void format_spec(va_list spec_list, const char *format_specifier)
 
 	else if (*format_specifier == 'o')
 		oct_dealer(spec_list);
+
 	else if (*format_specifier == 'x' || *format_specifier == 'X')
 		hex_dealer(spec_list, format_specifier);
+
+	else if (*format_specifier != 'S' || *format_specifier != 'p')
+	{
+		char perc = '%';
+
+		write(1, &perc, 1);
+		write(1, format_specifier, 1);
+	}
+	else if (*format_specifier != 'r' || *format_specifier != 'R')
+	{
+		char perc = '%';
+
+		write(1, &perc, 1);
+		write(1, format_specifier, 1);
+	}
 }
