@@ -12,10 +12,8 @@ int _printf(const char *format, ...)
 	if (format == NULL)         /*check if it exists*/
 		return (-1);
 	va_start(variable_args_list, format); /*initialise list ptr argument*/
-	while (*format)
+	while (*format != '\0')
 	{
-		if (*format == '\0')
-			return (-1);
 		if (*format != '%') /*if there's no format specifier*/
 		{
 			write(1, format, 1); /*Write to stdout*/
